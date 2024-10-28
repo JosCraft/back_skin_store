@@ -5,21 +5,21 @@ from src.core.models.material_domain import MaterialDomain
 class IMaterialRepository(ABC):
 
     @abstractmethod
-    def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
+    async def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
         pass
 
     @abstractmethod
-    def get_by_id(self, id_material: int) -> MaterialDomain:
+    async def get_by_id(self, id_material: int) -> MaterialDomain:
         pass
 
     @abstractmethod
-    def create(self, mat: MaterialDomain):
+    async def create(self, mat: MaterialDomain):
         pass
 
     @abstractmethod
-    def update(self, id_material: int, mat: MaterialDomain):
+    async def update(self, id_material: int, mat: MaterialDomain):
         pass
 
     @abstractmethod
-    def delete(self, id_material: int) -> bool:
+    async def delete(self, id_material: int) -> bool:
         pass

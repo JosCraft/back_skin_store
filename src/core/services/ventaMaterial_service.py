@@ -10,14 +10,14 @@ class ventamaterialService(IVentaMaterialService):
         self.ventamaterial_repository = ventamaterial_repository
 
     async def get_all_ventamaterial(self) -> list[MaterialDomain]:
-        return self.ventamaterial_repository.get_all()
+        return await self.ventamaterial_repository.get_all()
 
     async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> MaterialDomain:
-        return self.ventamaterial_repository.get_by_id(ventamaterial_id)
+        return await self.ventamaterial_repository.get_by_id(ventamaterial_id)
 
     async def add_ventamaterial(self, ventamaterial: VentaMaterialDomain):
-        return self.ventamaterial_repository.add(ventamaterial)
+        return await self.ventamaterial_repository.add(ventamaterial)
 
     async def remove_ventamaterial(self, ventamaterial_id: int) -> bool:
-        return self.ventamaterial_repository.remove(ventamaterial_id)
+        return await self.ventamaterial_repository.remove(ventamaterial_id)
 

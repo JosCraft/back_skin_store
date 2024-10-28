@@ -8,10 +8,10 @@ class ventaService(IVentaService):
         self.venta_repository = venta_repository
 
     async def get_all_venta(self) -> list[VentaDomain]:
-        return self.venta_repository.get_all()
+        return await self.venta_repository.get_all()
 
     async def get_venta_by_id(self, venta_id: int) -> VentaDomain:
-        return self.venta_repository.get_by_id(venta_id)
+        return await self.venta_repository.get_by_id(venta_id)
 
     async def create_venta(self, venta: VentaDomain):
-        return self.venta_repository.create(venta)
+        return await self.venta_repository.create(venta)

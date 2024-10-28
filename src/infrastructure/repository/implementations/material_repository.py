@@ -7,7 +7,7 @@ class MaterialRepository(IMaterialRepository):
     def __init__(self,connection):
         self.connection = connection
 
-    def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
+    async def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
         materiales = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
@@ -26,7 +26,7 @@ class MaterialRepository(IMaterialRepository):
             print(e)
         return materiales
 
-    def get_by_id(self, id_material: int) -> MaterialDomain:
+    async def get_by_id(self, id_material: int) -> MaterialDomain:
         mat = None
         try:
             with self.connection.cursor(dictionary=True) as cursor:
@@ -42,7 +42,7 @@ class MaterialRepository(IMaterialRepository):
             print(e)
         return mat
 
-    def create(self, mat: MaterialDomain):
+    async def create(self, mat: MaterialDomain):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("INSERT INTO material (medida_mt, id_tipo) VALUES (%s, %s)",
@@ -51,7 +51,7 @@ class MaterialRepository(IMaterialRepository):
         except Exception as e:
             print(e)
 
-    def update(self, id_material: int, mat: MaterialDomain):
+    async def update(self, id_material: int, mat: MaterialDomain):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("UPDATE material SET medida_mt = %s, id_tipo = %s WHERE id_mt = %s",
@@ -61,7 +61,7 @@ class MaterialRepository(IMaterialRepository):
             print(e)
         return mat
 
-    def delete(self, id_material: int) -> bool:
+    async def delete(self, id_material: int) -> bool:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("DELETE FROM material WHERE id_mt = %s", (id_material,))

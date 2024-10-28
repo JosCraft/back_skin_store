@@ -9,74 +9,78 @@ class InventarioRepository(IInventarioRepository):
     def __init__(self, connection):
         self.connection = connection
 
-    def get_all(self) -> list[MaterialDomain]:
+    async def get_all(self) -> list[MaterialDomain]:
         inventarios = []
         try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM material join inventario on material.id_mt = inventario.id_material")
+            with self.connection.cursor(dictionary=True) as cursor:
+                cursor.execute("SELECT * FROM inventario "
+                               "INNER JOIN material ON material.id_mt = inventario.id_material "
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_mt")
                 result = cursor.fetchall()
+                print(result)
                 for row in result:
-                    cursor.execute("SELECT * FROM tipo WHERE id_tp = %s", (row["id_tipo"],))
-                    tipo = cursor.fetchone()
-                    cursor.execute("SELECT * FROM color WHERE id_cl = %s", (tipo["id_color"],))
-                    color = cursor.fetchone()
-                    cursor.execute("SELECT * FROM curtiembre WHERE id_cr = %s", (tipo["id_curtiembre"],))
-                    curtiembre = cursor.fetchone()
+                    tipo = TipoDomain(
+                        id_tp=row["id_tp"],
+                        nombre=row["nombre_tp"],
+                        precio=row["precio_tp"],
+                        medida=row["tipo_medida"],
+                        idColor=row["id_color"],
+                        idCurtiembre=row["id_curtiembre"]
+                    )
                     inv = MaterialDomain(
-                        id_mt=row["id_mt"],
+                        id=row["id_mt"],
                         medida=row["medida_mt"],
-                        tipo=TipoDomain(
-                            id_tp=tipo["id_tp"],
-                            nombre=tipo["nombre_tp"],
-                            precio=tipo["precio_tp"],
-                            Color=color["nombre_cl"],
-                            Curtiembre=curtiembre
-                        )
+                        idTipo=row["id_tipo"],
+                        tipo=tipo,
                     )
                     inventarios.append(inv)
+                return inventarios
         except Exception as e:
             print(e)
         return inventarios
 
-    def get_by_id(self, id: int) -> MaterialDomain:
+    async def get_by_id(self, id_inv: int) -> MaterialDomain:
         inv = None
         try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM inventario WHERE idInventario = %s", (id,))
+            with self.connection.cursor(dictionary=True) as cursor:
+                cursor.execute("SELECT * FROM inventario "
+                               "INNER JOIN material ON material.id_mt = inventario.id_material "
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_mt"
+                               "where id_inv = %s", (id_inv,))
                 result = cursor.fetchone()
-                inv = InventarioDomain(
-                    idInventario=result["idInventario"],
-                    idMaterial=result["idMaterial"]
+                tipo = TipoDomain(
+                    id_tp=result["id_tp"],
+                    nombre_tp=result["nombre_tp"],
+                    precio_tp=result["precio_tp"],
+                    idColor=result["id_color"],
+                    idCurtiembre=result["id_curtiembre"]
                 )
+                inv = MaterialDomain(
+                    id_mt=result["id_mt"],
+                    medida=result["medida_mt"],
+                    idTipo=result["id_tipo"],
+                    tipo=tipo,
+                )
+                return inv
         except Exception as e:
             print(e)
         return inv
 
-    def create(self, inv: InventarioDomain) -> InventarioDomain:
+    async def add(self, inv: InventarioDomain):
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("INSERT INTO inventario (idMaterial) VALUES (%s)",
-                               (inv.idMaterial))
+                cursor.execute("INSERT INTO inventario (id_material) VALUES (%s)",
+                               (inv.idMaterial,))
                 self.connection.commit()
         except Exception as e:
             print(e)
-        return inv
 
-    def update(self, id: int, inv: InventarioDomain) -> InventarioDomain:
+    async def remove(self, id_inv: int) -> bool:
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("UPDATE inventario SET idMaterial = %s WHERE idInventario = %s",
-                               (inv.idMaterial, id))
+                cursor.execute("DELETE FROM inventario WHERE id_inv = %s", (id_inv,))
                 self.connection.commit()
+                return True
         except Exception as e:
             print(e)
-        return inv
-
-    def delete(self, id: int) -> bool:
-        try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("DELETE FROM inventario WHERE idInventario = %s", (id,))
-                self.connection.commit()
-        except Exception as e:
-            print(e)
-        return True
+        return False

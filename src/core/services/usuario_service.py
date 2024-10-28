@@ -9,16 +9,16 @@ class usuarioService(IUsuarioService):
         self.usuario_repository = usuario_repository
 
     async def get_all_usuario(self) -> list[UsuarioDomain]:
-        return self.usuario_repository.get_all()
+        return await self.usuario_repository.get_all()
 
     async def get_usuario_by_id(self, usuario_id: int) -> UsuarioDomain:
-        return self.usuario_repository.get_by_id(usuario_id)
+        return await self.usuario_repository.get_by_id(usuario_id)
 
     async def create_usuario(self, usuario: UsuarioDomain):
-        return self.usuario_repository.create(usuario)
+        return await self.usuario_repository.create(usuario)
 
     async def update_usuario(self, usuario_id: int, usuario: UsuarioDomain):
-        return self.usuario_repository.update(usuario_id, usuario)
+        return await self.usuario_repository.update(usuario_id, usuario)
 
     async def delete_usuario(self, usuario_id: int) -> bool:
-        return self.usuario_repository.delete(usuario_id)
+        return await self.usuario_repository.delete(usuario_id)

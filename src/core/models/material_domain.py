@@ -8,3 +8,4 @@ class MaterialDomain(BaseModel):
     id: Optional[int] = None
     medida: str
     idTipo: Optional[int] = None
+    tipo: Optional[TipoDomain] = None

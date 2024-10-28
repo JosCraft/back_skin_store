@@ -9,16 +9,16 @@ class materialService(IMaterialService):
         self.material_repository = material_repository
 
     async def get_all_by_tipo_material(self, id_tipo: int) -> list[MaterialDomain]:
-        return self.material_repository.get_all_by_tipo(id_tipo)
+        return await self.material_repository.get_all_by_tipo(id_tipo)
 
     async def get_material_by_id(self, id_material: int) -> MaterialDomain:
-        return self.material_repository.get_by_id(id_material)
+        return await self.material_repository.get_by_id(id_material)
 
     async def create_material(self, material: MaterialDomain):
-        return self.material_repository.create(material)
+        return await self.material_repository.create(material)
 
     async def update_material(self, id_material: int, material: MaterialDomain):
-        return self.material_repository.update(id_material, material)
+        return await self.material_repository.update(id_material, material)
 
     async def delete_material(self, id_material: int):
-        return self.material_repository.delete(id_material)
+        return await self.material_repository.delete(id_material)

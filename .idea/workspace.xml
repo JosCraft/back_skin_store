@@ -4,15 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="change install env">
-      <change afterPath="$PROJECT_DIR$/src/presentation/controllers/material_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/dto/material_dto.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/mappers/map_dto_domain_material.py" afterDir="false" />
+    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="crud material complete">
+      <change afterPath="$PROJECT_DIR$/src/presentation/controllers/inventario_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/dto/inventario_dto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/mappers/map_dto_domain_inventario.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/inventario_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/inventario_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/material_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/material_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/tipo_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/tipo_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/usuario_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/usuario_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/ventaMaterial_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/ventaMaterial_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/venta_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/venta_repository_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/services/inventario_service_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/services/inventario_service_abstract.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/models/material_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/material_domain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/inventario_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/inventario_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/material_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/material_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/tipo_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/tipo_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/usuario_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/usuario_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/ventaMaterial_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/ventaMaterial_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/venta_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/venta_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/inventario_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/inventario_repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/tipo_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/tipo_repository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,12 +128,21 @@
       <option name="project" value="LOCAL" />
       <updated>1730145602267</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="crud material complete">
+      <option name="closed" value="true" />
+      <created>1730150790070</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730150790070</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="change install env" />
-    <option name="LAST_COMMIT_MESSAGE" value="change install env" />
+    <MESSAGE value="crud material complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud material complete" />
   </component>
 </project>

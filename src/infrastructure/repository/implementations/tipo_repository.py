@@ -9,7 +9,7 @@ class tipoRepository(ITipoRepository):
     def __init__(self, connection):
         self.connection = connection
 
-    def get_all(self) -> list[TipoDomain]:
+    async def get_all(self) -> list[TipoDomain]:
         tipos = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
@@ -47,7 +47,7 @@ class tipoRepository(ITipoRepository):
             print(e)
         return tipos
 
-    def get_by_id(self, id_tipo: int) -> TipoDomain:
+    async def get_by_id(self, id_tipo: int) -> TipoDomain:
         tip = None
         try:
             with self.connection.cursor(dictionary=True) as cursor:
@@ -84,7 +84,7 @@ class tipoRepository(ITipoRepository):
             print(e)
         return tip
 
-    def create(self, tip: TipoDomain):
+    async def create(self, tip: TipoDomain):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
@@ -95,7 +95,7 @@ class tipoRepository(ITipoRepository):
         except Exception as e:
             print(e)
 
-    def update(self, id_tipo: int, tip: TipoDomain):
+    async def update(self, id_tipo: int, tip: TipoDomain):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
@@ -107,7 +107,7 @@ class tipoRepository(ITipoRepository):
         except Exception as e:
             print(e)
 
-    def delete(self, id_tipo: int) -> bool:
+    async def delete(self, id_tipo: int) -> bool:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("DELETE FROM tipo WHERE id_tp = %s", (id_tipo,))
