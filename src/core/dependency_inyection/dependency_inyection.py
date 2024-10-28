@@ -5,6 +5,7 @@ from src.core.services.curtiembre_service import curtiembreService
 from src.core.services.tipo_service import tipoService
 from src.core.services.material_service import materialService
 from src.core.services.inventario_service import inventarioService
+from src.core.services.venta_service import ventaService
 
 from src.infrastructure.repository.dependency_inyection.dependency_inyection import get_db_connection
 
@@ -13,6 +14,7 @@ from src.infrastructure.repository.implementations.curtiembre_repository import 
 from src.infrastructure.repository.implementations.tipo_repository import tipoRepository
 from src.infrastructure.repository.implementations.material_repository import MaterialRepository
 from src.infrastructure.repository.implementations.inventario_repository import InventarioRepository
+from src.infrastructure.repository.implementations.venta_repository import ventaRepository
 
 
 def build_curtiembre_service(
@@ -43,3 +45,8 @@ def build_inventario_service(
         db_connection=Depends(get_db_connection)
 ):
     return inventarioService(InventarioRepository(db_connection))
+
+def build_venta_service(
+        db_connection=Depends(get_db_connection)
+):
+    return ventaService(ventaRepository(db_connection))

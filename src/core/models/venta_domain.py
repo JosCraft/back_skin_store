@@ -7,4 +7,4 @@ class VentaDomain(BaseModel):
     id: Optional[int] = None
     fecha: date
     totalVenta: float
-    idUsuario: int
+    idUsuario: Optional[int] = None
