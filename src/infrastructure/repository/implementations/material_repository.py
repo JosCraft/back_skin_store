@@ -10,7 +10,7 @@ class MaterialRepository(IMaterialRepository):
     def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
         materiales = []
         try:
-            with self.connection.cursor() as cursor:
+            with self.connection.cursor(dictionary=True) as cursor:
                 cursor.execute("SELECT * "
                                "FROM material "
                                "WHERE material.id_tipo = %s", (id_tipo,))
@@ -29,19 +29,20 @@ class MaterialRepository(IMaterialRepository):
     def get_by_id(self, id_material: int) -> MaterialDomain:
         mat = None
         try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM material WHERE id = %s", (id_material,))
+            with self.connection.cursor(dictionary=True) as cursor:
+                cursor.execute("SELECT * FROM material WHERE id_mt = %s", (id_material,))
                 result = cursor.fetchone()
                 mat = MaterialDomain(
                     id=result["id_mt"],
                     medida=result["medida_mt"],
                     idTipo=result["id_tipo"]
                 )
+                return mat
         except Exception as e:
             print(e)
         return mat
 
-    def create(self, mat: MaterialDomain) -> MaterialDomain:
+    def create(self, mat: MaterialDomain):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("INSERT INTO material (medida_mt, id_tipo) VALUES (%s, %s)",
@@ -49,23 +50,23 @@ class MaterialRepository(IMaterialRepository):
                 self.connection.commit()
         except Exception as e:
             print(e)
-        return mat
 
-    def update(self, id_material: int, mat: MaterialDomain) -> MaterialDomain:
+    def update(self, id_material: int, mat: MaterialDomain):
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("UPDATE material SET medida_mt = %s, id_tipo = %s WHERE id = %s",
+                cursor.execute("UPDATE material SET medida_mt = %s, id_tipo = %s WHERE id_mt = %s",
                                (mat.medida, mat.idTipo, id_material))
                 self.connection.commit()
         except Exception as e:
             print(e)
         return mat
 
-    def delete(self, id: int) -> bool:
+    def delete(self, id_material: int) -> bool:
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("DELETE FROM material WHERE id = %s", (id,))
+                cursor.execute("DELETE FROM material WHERE id_mt = %s", (id_material,))
                 self.connection.commit()
+                return True
         except Exception as e:
             print(e)
-        return True
+        return False

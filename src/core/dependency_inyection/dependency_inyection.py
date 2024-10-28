@@ -3,12 +3,14 @@ from fastapi import Depends
 from src.core.services.color_service import colorService
 from src.core.services.curtiembre_service import curtiembreService
 from src.core.services.tipo_service import tipoService
+from src.core.services.material_service import materialService
 
 from src.infrastructure.repository.dependency_inyection.dependency_inyection import get_db_connection
 
 from src.infrastructure.repository.implementations.color_repository import colorRepository
 from src.infrastructure.repository.implementations.curtiembre_repository import CurtiembreRepository
 from src.infrastructure.repository.implementations.tipo_repository import tipoRepository
+from src.infrastructure.repository.implementations.material_repository import MaterialRepository
 
 
 def build_curtiembre_service(
@@ -27,3 +29,10 @@ def build_tipo_service(
         db_connection=Depends(get_db_connection)
 ):
     return tipoService(tipoRepository(db_connection))
+
+
+def build_material_service(
+        db_connection=Depends(get_db_connection)
+):
+    return materialService(MaterialRepository(db_connection))
+

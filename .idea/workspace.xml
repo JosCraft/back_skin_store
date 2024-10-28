@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/back_SkinStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back_SkinStore.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="change install env">
+      <change afterPath="$PROJECT_DIR$/src/presentation/controllers/material_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/dto/material_dto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/mappers/map_dto_domain_material.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/models/material_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/material_domain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -100,6 +105,20 @@
       <option name="presentableId" value="Default" />
       <updated>1729109279563</updated>
     </task>
+    <task id="LOCAL-00001" summary="change install env">
+      <option name="closed" value="true" />
+      <created>1730145602267</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730145602267</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="change install env" />
+    <option name="LAST_COMMIT_MESSAGE" value="change install env" />
   </component>
 </project>
