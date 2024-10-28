@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from src.core.models.curtiembre_domain import CurtiembreDomain
 from src.core.abstractions.infrastructure.repository.curtiembre_repository_abstract import ICurtiembreRepository
 
+
 class ICurtiembreService(ABC):
     @abstractmethod
     async def get_all_curtiembre(self) -> list[CurtiembreDomain]:

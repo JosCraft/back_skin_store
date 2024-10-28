@@ -11,7 +11,7 @@ class colorService(IColorService):
     async def get_all_color(self) -> list[ColorDomain]:
         return await self.color_repository.get_all()
 
-    async def get_color_by_id(self, color_id: int):
+    async def get_color_by_id(self, color_id: int) -> ColorDomain:
         return await self.color_repository.get_by_id(color_id)
 
     async def create_color(self, color: ColorDomain):
@@ -20,5 +20,5 @@ class colorService(IColorService):
     async def update_color(self, color_id: int, color: ColorDomain):
         await self.color_repository.update(color_id, color)
 
-    async def delete_color(self, color_id: int):
+    async def delete_color(self, color_id: int) -> bool:
         return await self.color_repository.delete(color_id)

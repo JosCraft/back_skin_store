@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.presentation.controllers.color_controller import color_controller
 from src.presentation.controllers.curtiembre_controller import curtiembre_controller
+from src.presentation.controllers.tipo_controller import tipo_controller
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -20,6 +21,8 @@ app.add_middleware(
 
 app.include_router(curtiembre_controller)
 app.include_router(color_controller)
+app.include_router(tipo_controller)
+
 
 if __name__ == "__main__":
     import uvicorn

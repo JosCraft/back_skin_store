@@ -20,5 +20,5 @@ class curtiembreService(ICurtiembreService):
     async def update_curtiembre(self, id_curtiembre: int,  curtiembre: CurtiembreDomain):
         await self.curtiembre_repository.update(id_curtiembre, curtiembre)
 
-    async def delete_curtiembre(self, curtiembre_id: int):
+    async def delete_curtiembre(self, curtiembre_id: int) -> bool:
         return await self.curtiembre_repository.delete(curtiembre_id)

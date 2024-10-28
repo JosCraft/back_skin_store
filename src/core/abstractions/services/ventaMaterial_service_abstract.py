@@ -10,17 +10,13 @@ class IVentaMaterialService(ABC):
         pass
 
     @abstractmethod
-    async def get_ventamaterial_by_id(self, ventaMaterial_id: int) -> MaterialDomain:
+    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> MaterialDomain:
         pass
 
     @abstractmethod
-    async def create_ventamaterial(self, ventaMaterial: VentaMaterialDomain):
+    async def add_ventamaterial(self, ventamaterial: VentaMaterialDomain):
         pass
 
     @abstractmethod
-    async def update_ventamaterial(self, ventaMaterial_id: int, ventaMaterial: VentaMaterialDomain):
-        pass
-
-    @abstractmethod
-    async def delete_ventamaterial(self, ventaMaterial_id: int) -> bool:
+    async def remove_ventamaterial(self, ventamaterial_id: int) -> bool:
         pass

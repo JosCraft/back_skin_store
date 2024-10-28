@@ -1,23 +1,23 @@
 from src.core.abstractions.infrastructure.repository.ventaMaterial_repository_abstract import IVentaMaterialRepository
 from src.core.abstractions.services.ventaMaterial_service_abstract import IVentaMaterialService
 from src.core.models.ventaMaterial_domain import VentaMaterialDomain
+from src.core.models.material_domain import MaterialDomain
 
-class ventaMaterialService(IVentaMaterialService):
 
-    def __init__(self, ventaMaterial_repository: IVentaMaterialRepository):
-        self.ventaMaterial_repository = ventaMaterial_repository
+class ventamaterialService(IVentaMaterialService):
 
-    async def create(self, ventaMaterial: VentaMaterialDomain):
-        return await self.ventaMaterial_repository.create(ventaMaterial)
+    def __init__(self, ventamaterial_repository: IVentaMaterialRepository):
+        self.ventamaterial_repository = ventamaterial_repository
 
-    async def get(self, id: int):
-        return await self.ventaMaterial_repository.get(id)
+    async def get_all_ventamaterial(self) -> list[MaterialDomain]:
+        return self.ventamaterial_repository.get_all()
 
-    async def get_all(self):
-        return await self.ventaMaterial_repository.get_all()
+    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> MaterialDomain:
+        return self.ventamaterial_repository.get_by_id(ventamaterial_id)
 
-    async def update(self, ventaMaterial: VentaMaterialDomain):
-        return await self.ventaMaterial_repository.update(ventaMaterial)
+    async def add_ventamaterial(self, ventamaterial: VentaMaterialDomain):
+        return self.ventamaterial_repository.add(ventamaterial)
 
-    async def delete(self, id: int):
-        return await self.ventaMaterial_repository.delete(id)
+    async def remove_ventamaterial(self, ventamaterial_id: int) -> bool:
+        return self.ventamaterial_repository.remove(ventamaterial_id)
+
