@@ -4,33 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/presentation/controllers/tipo_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/dto/tipo_dto.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/mappers/map_dto_domain_tipo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/back_SkinStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back_SkinStore.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="add tipo crud">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/abstractions/services/curtiembre_service_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/services/curtiembre_service_abstract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/material_repository_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/infrastructure/repository/material_repository_abstract.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/abstractions/services/material_service_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/services/material_service_abstract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/abstractions/services/ventaMaterial_service_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/services/ventaMaterial_service_abstract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/abstractions/services/venta_service_abstract.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/abstractions/services/venta_service_abstract.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/curtiembre_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/curtiembre_domain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/inventario_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/inventario_domain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/material_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/material_domain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/tipo_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/tipo_domain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/usuario_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/usuario_domain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/color_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/color_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/curtiembre_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/curtiembre_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/inventario_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/inventario_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/services/material_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/material_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/tipo_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/tipo_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/usuario_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/usuario_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/ventaMaterial_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/ventaMaterial_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/venta_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/venta_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/tipo_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/tipo_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/material_repository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +102,19 @@
       <option name="presentableId" value="Default" />
       <updated>1729109279563</updated>
     </task>
+    <task id="LOCAL-00001" summary="add tipo crud">
+      <option name="closed" value="true" />
+      <created>1730129762713</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730129762713</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add tipo crud" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tipo crud" />
   </component>
 </project>

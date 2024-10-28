@@ -8,8 +8,8 @@ class materialService(IMaterialService):
     def __init__(self, material_repository: IMaterialRepository):
         self.material_repository = material_repository
 
-    async def get_all_material(self) -> list[MaterialDomain]:
-        return self.material_repository.get_all()
+    async def get_all_by_tipo_material(self, id_tipo: int) -> list[MaterialDomain]:
+        return self.material_repository.get_all_by_tipo(id_tipo)
 
     async def get_material_by_id(self, id_material: int) -> MaterialDomain:
         return self.material_repository.get_by_id(id_material)

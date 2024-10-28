@@ -5,7 +5,7 @@ from src.core.models.material_domain import MaterialDomain
 class IMaterialRepository(ABC):
 
     @abstractmethod
-    def get_all(self) -> list[MaterialDomain]:
+    def get_all_by_tipo(self, id_tipo: int) -> list[MaterialDomain]:
         pass
 
     @abstractmethod

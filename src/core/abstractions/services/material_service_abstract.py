@@ -4,7 +4,7 @@ from src.core.models.material_domain import MaterialDomain
 
 class IMaterialService(ABC):
     @abstractmethod
-    async def get_all_material(self) -> list[MaterialDomain]:
+    async def get_all_by_tipo_material(self, id_tipo: int) -> list[MaterialDomain]:
         pass
 
     @abstractmethod
