@@ -20,6 +20,7 @@ async def get_all_venta(
     except Exception as e:
         return {"error": str(e)}
 
+
 @venta_controller.get("/venta/{venta_id}")
 async def get_venta_by_id(
         venta_id: int,
@@ -30,6 +31,7 @@ async def get_venta_by_id(
         return venta
     except Exception as e:
         return {"error": str(e)}
+
 
 @venta_controller.post("/venta")
 async def create_venta(
@@ -47,32 +49,6 @@ async def create_venta(
     except Exception as e:
         return {"error": str(e)}
 
-@venta_controller.put("/venta/{venta_id}")
-async def update_venta(
-        venta_id: int,
-        ventaDTO: VentaDTO,
-        venta_service: IVentaService = Depends(build_venta_service)
-):
-    """
-    :type venta_id: int
-    :type ventaDTO: VentaDTO
-    :type venta_service: IVentaService
-    """
-    try:
-        venta = map_domain_dto_to_venta(ventaDTO)
-        await venta_service.update_venta(venta_id, venta)
-        return Response(status_code=200)
-    except Exception as e:
-        return {"error": str(e)}
 
-@venta_controller.delete("/venta/{venta_id}")
-async def delete_venta(
-        venta_id: int,
-        venta_service: IVentaService = Depends(build_venta_service)
-):
-    try:
-        await venta_service.delete_venta(venta_id)
-        return Response(status_code=200)
-    except Exception as e:
-        return {"error": str(e)}
+
 

@@ -17,7 +17,6 @@ class InventarioRepository(IInventarioRepository):
                                "INNER JOIN material ON material.id_mt = inventario.id_material "
                                "INNER JOIN tipo ON tipo.id_tp = material.id_mt")
                 result = cursor.fetchall()
-                print(result)
                 for row in result:
                     tipo = TipoDomain(
                         id_tp=row["id_tp"],

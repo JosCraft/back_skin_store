@@ -16,10 +16,3 @@ class IVentaRepository(ABC):
     async def create(self, ven: VentaDomain):
         pass
 
-    @abstractmethod
-    async def update(self, id_sale: int, ven: VentaDomain):
-        pass
-
-    @abstractmethod
-    async def delete(self, id_sale: int) -> bool:
-        pass

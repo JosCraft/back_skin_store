@@ -6,5 +6,5 @@ def map_domain_dto_to_venta(ventaDTO: VentaDTO) -> VentaDomain:
     return VentaDomain(
         id=ventaDTO.id,
         fecha=ventaDTO.fecha,
-        total=ventaDTO.total
+        totalVenta=ventaDTO.totalVenta
     )

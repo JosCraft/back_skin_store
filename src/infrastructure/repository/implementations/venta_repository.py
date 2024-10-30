@@ -6,6 +6,7 @@ class ventaRepository(IVentaRepository):
 
     def __init__(self, connection):
         self.connection = connection
+
     async def get_all(self) -> list[VentaDomain]:
         ventas = []
         try:
@@ -50,20 +51,4 @@ class ventaRepository(IVentaRepository):
         except Exception as e:
             print(e)
 
-    async def update(self, id_sale: int, ven: VentaDomain):
-        try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("UPDATE venta SET fecha_vt = %s, total_vt = %s, id_usuario = %s WHERE id_vt = %s",
-                               (ven.fecha, ven.totalVenta, ven.idUsuario, id_sale))
-                self.connection.commit()
-        except Exception as e:
-            print(e)
 
-    async def delete(self, id_sale: int) -> bool:
-        try:
-            with self.connection.cursor() as cursor:
-                cursor.execute("DELETE FROM venta WHERE id_vt = %s", (id_sale,))
-                self.connection.commit()
-        except Exception as e:
-            print(e)
-        return True

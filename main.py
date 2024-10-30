@@ -8,6 +8,8 @@ from src.presentation.controllers.tipo_controller import tipo_controller
 from src.presentation.controllers.material_controller import material_controller
 from src.presentation.controllers.inventario_controller import inventario_controller
 from src.presentation.controllers.venta_controller import venta_controller
+from src.presentation.controllers.ventamaterial_controller import ventamaterial_controller
+
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -28,6 +30,7 @@ app.include_router(tipo_controller)
 app.include_router(material_controller)
 app.include_router(inventario_controller)
 app.include_router(venta_controller)
+app.include_router(ventamaterial_controller)
 
 if __name__ == "__main__":
     import uvicorn

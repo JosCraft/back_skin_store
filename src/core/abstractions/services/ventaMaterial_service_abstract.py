@@ -6,11 +6,11 @@ from src.core.models.material_domain import MaterialDomain
 class IVentaMaterialService(ABC):
 
     @abstractmethod
-    async def get_all_ventamaterial(self) -> list[MaterialDomain]:
+    async def get_all_ventamaterial(self) -> list[VentaMaterialDomain]:
         pass
 
     @abstractmethod
-    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> MaterialDomain:
+    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> VentaMaterialDomain:
         pass
 
     @abstractmethod
