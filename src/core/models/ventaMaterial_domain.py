@@ -7,5 +7,5 @@ from src.core.models.venta_domain import VentaDomain
 class VentaMaterialDomain(BaseModel):
     idVenta: Optional[int] = None
     idMaterial: Optional[int] = None
-    MaterialDomain: Optional[MaterialDomain] = None
-    VentaDomain: Optional[VentaDomain] = None
+    MaterialDomain: Optional[MaterialDomain]
+    VentaDomain: Optional[VentaDomain]

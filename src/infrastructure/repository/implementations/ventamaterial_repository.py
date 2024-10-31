@@ -13,32 +13,31 @@ class VentaMaterialRepository(IVentaMaterialRepository):
         vendidos = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT id_material, id_venta, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt "
+                cursor.execute("SELECT id_mt, id_vt, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt "
                                "FROM venta_material "
                                "INNER JOIN material ON material.id_mt = venta_material.id_venta "
-                               "INNER JOIN tipo ON tipo.id_tp = material.id_mt "
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "
                                "INNER JOIN venta ON venta.id_vt = venta_material.id_venta")
                 result = cursor.fetchall()
-                print(result)
                 for row in result:
                     material = MaterialDomain(
-                        id=row["id_material"],
+                        id=row["id_mt"],
                         medida=row["medida_mt"],
                         idTipo=row["id_tipo"],
                     )
                     venta = VentaDomain(
-                        id=row["id_venta"],
+                        id=row["id_vt"],
                         fecha=row["fecha_vt"],
                         totalVenta=row["total_vt"],
                         idUsuario=row["id_usuario"]
                     )
                     vendidos.append(VentaMaterialDomain(
-                        idVenta=row["id_venta"],
-                        idMaterial=row["id_material"],
+                        idVenta=row["id_vt"],
+                        idMaterial=row["id_mt"],
                         MaterialDomain=material,
                         VentaDomain=venta
                     ))
-            return vendidos
+                return vendidos
         except Exception as e:
             print(e)
             return None
@@ -46,7 +45,7 @@ class VentaMaterialRepository(IVentaMaterialRepository):
     async def get_by_id(self, id_material: int) -> VentaMaterialDomain:
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT id_material, id_venta, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt "
+                cursor.execute("SELECT id_mt, id_vt, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt "
                                "FROM venta_material "
                                "INNER JOIN material ON material.id_mt = venta_material.id_venta "
                                "INNER JOIN tipo ON tipo.id_tp = material.id_mt "
@@ -54,7 +53,7 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                                "WHERE id_material = %s", (id_material,))
                 result = cursor.fetchone()
                 material = MaterialDomain(
-                    id=result["id_material"],
+                    id=result["id_mt"],
                     medida=result["medida_mt"],
                     idTipo=result["id_tipo"]
                 )
@@ -62,7 +61,6 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                     id=result["id_venta"],
                     fecha=result["fecha_vt"],
                     totalVenta=result["total_vt"],
-                    idUsuario=result["id_usuario"]
                 )
                 return VentaMaterialDomain(
                     idVenta=result["id_venta"],
@@ -76,7 +74,8 @@ class VentaMaterialRepository(IVentaMaterialRepository):
 
     async def add(self, ven: VentaMaterialDomain):
         try:
-            with self.connection.cursor() as cursor:
+            print(ven)
+            with self.connection.cursor(dictionary=True) as cursor:
                 cursor.execute("INSERT INTO venta_material (id_venta, id_material) VALUES (%s, %s)",
                                (ven.idVenta, ven.idMaterial))
                 self.connection.commit()

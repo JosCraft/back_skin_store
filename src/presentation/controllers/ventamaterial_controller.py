@@ -43,6 +43,7 @@ async def create_ventamaterial(
     :type ventamaterial_service: IVentaMaterialService
     """
     try:
+        print(ventamaterialDTO)
         ventamaterial = map_dto_domain_to_ventamaterial(ventamaterialDTO)
         await ventamaterial_service.add_ventamaterial(ventamaterial)
         return Response(status_code=201)
@@ -50,9 +51,9 @@ async def create_ventamaterial(
         return {"error": str(e)}
 
 
-@ventamaterial_controller.delete("/ventamaterial/{ventamaterial_id}")
+@ventamaterial_controller.delete("/ventamaterial/{material_id}")
 async def remove_ventamaterial(
-        ventamaterial_id: int,
+        material_id: int,
         ventamaterial_service: IVentaMaterialService = Depends(build_ventamaterial_service)
 ):
     try:
