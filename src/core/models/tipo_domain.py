@@ -8,7 +8,7 @@ class TipoDomain(BaseModel):
     id: Optional[int] = None
     nombre: str
     precio: float
-    medida: str
+    idCategoria: int
     idColor: int
     idCurtiembre: int
     color: Optional[ColorDomain] = None

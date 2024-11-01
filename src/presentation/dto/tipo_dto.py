@@ -8,6 +8,6 @@ class TipoDTO(BaseModel):
     id: Optional[int]
     nombre: str
     precio: float
-    medida: str
+    idCategoria: int
     idColor: int
     idCurtiembre: int

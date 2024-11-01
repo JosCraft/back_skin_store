@@ -13,7 +13,7 @@ class tipoRepository(ITipoRepository):
         tipos = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT id_tp, nombre_tp, precio_tp,tipo_medida, id_color, id_curtiembre, "
+                cursor.execute("SELECT id_tp, nombre_tp, precio_tp, id_color, id_curtiembre, id_categoria , "
                                "nombre_cl, codigo_hx, "
                                "nombre_cr, numero_cr "
                                "FROM tipo "
@@ -35,7 +35,7 @@ class tipoRepository(ITipoRepository):
                         id=row["id_tp"],
                         nombre=row["nombre_tp"],
                         precio=row["precio_tp"],
-                        medida=row["tipo_medida"],
+                        idCategoria=row["id_categoria"],
                         idColor=row["id_color"],
                         idCurtiembre=row["id_curtiembre"],
                         color=color,
@@ -51,7 +51,7 @@ class tipoRepository(ITipoRepository):
         tip = None
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT id_tp, nombre_tp, precio_tp,tipo_medida, id_color, id_curtiembre, "
+                cursor.execute("SELECT id_tp, id_categoria ,nombre_tp, precio_tp, id_color, id_curtiembre, "
                                "nombre_cl, codigo_hx, "
                                "nombre_cr, numero_cr "
                                "FROM tipo "
@@ -73,7 +73,7 @@ class tipoRepository(ITipoRepository):
                     id=result["id_tp"],
                     nombre=result["nombre_tp"],
                     precio=result["precio_tp"],
-                    medida=result["tipo_medida"],
+                    idCategoria=result["id_categoria"],
                     idColor=result["id_color"],
                     idCurtiembre=result["id_curtiembre"],
                     color=color,
@@ -88,9 +88,9 @@ class tipoRepository(ITipoRepository):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT INTO tipo (nombre_tp, precio_tp, tipo_medida, id_color, id_curtiembre)"
+                    "INSERT INTO tipo (nombre_tp, precio_tp, id_categoria,id_color, id_curtiembre)"
                     " VALUES (%s, %s, %s, %s, %s)",
-                    (tip.nombre, tip.precio, tip.medida, tip.idColor, tip.idCurtiembre))
+                    (tip.nombre, tip.precio, tip.idCategoria, tip.idColor, tip.idCurtiembre))
                 self.connection.commit()
         except Exception as e:
             print(e)
@@ -100,9 +100,9 @@ class tipoRepository(ITipoRepository):
             with self.connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE tipo "
-                    "SET nombre_tp = %s, precio_tp = %s, tipo_medida = %s, id_color = %s, id_curtiembre = %s"
+                    "SET nombre_tp = %s, precio_tp = %s, id_categoria = %s, id_color = %s, id_curtiembre = %s"
                     " WHERE id_tp = %s",
-                    (tip.nombre, tip.precio, tip.medida, tip.idColor, tip.idCurtiembre, id_tipo))
+                    (tip.nombre, tip.precio, tip.idCategoria, tip.idColor, tip.idCurtiembre, id_tipo))
                 self.connection.commit()
         except Exception as e:
             print(e)

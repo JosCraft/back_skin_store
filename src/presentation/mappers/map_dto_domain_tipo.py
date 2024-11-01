@@ -6,7 +6,7 @@ def map_domain_dto_to_tipo(tipoDTO: TipoDTO) -> TipoDomain:
     return TipoDomain(
         nombre=tipoDTO.nombre,
         precio=tipoDTO.precio,
-        medida=tipoDTO.medida,
+        idCategoria=tipoDTO.idCategoria,
         idColor=tipoDTO.idColor,
         idCurtiembre=tipoDTO.idCurtiembre
     )
