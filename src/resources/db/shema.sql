@@ -1,6 +1,8 @@
 CREATE TABLE USUARIO (
     id_usr INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usr VARCHAR(225),
+    email VARCHAR(225),
+    password VARCHAR(225),
     ape_usr VARCHAR(225),
     numero_usr VARCHAR(225)
 );
@@ -17,15 +19,22 @@ CREATE TABLE COLOR (
     codigo_hx VARCHAR(10)
 );
 
+CREATE TABLE CATEMATERIAL (
+    id_ct INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_ct VARCHAR(100),
+    medida VARCHAR(50),
+);
+
 CREATE TABLE TIPO (
     id_tp INT AUTO_INCREMENT PRIMARY KEY,
     nombre_tp VARCHAR(100),
     precio_tp DECIMAL(10, 2),
-    tipo_medida VARCHAR(20),
+    id_categoria INT,
     id_color INT,
     id_curtiembre INT,
     FOREIGN KEY (id_color) REFERENCES COLOR(id_cl),
     FOREIGN KEY (id_curtiembre) REFERENCES CURTIEMBRE(id_cr)
+    FOREIGN KEY (id_categoria) REFERENCES CATEMATERIAL(id_ct)
 );
 
 CREATE TABLE MATERIAL (

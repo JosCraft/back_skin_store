@@ -7,6 +7,7 @@ from src.core.services.material_service import materialService
 from src.core.services.inventario_service import inventarioService
 from src.core.services.venta_service import ventaService
 from src.core.services.ventaMaterial_service import ventamaterialService
+from src.core.services.catematerial_service import CateMaterialService
 
 from src.infrastructure.repository.dependency_inyection.dependency_inyection import get_db_connection
 
@@ -17,6 +18,7 @@ from src.infrastructure.repository.implementations.material_repository import Ma
 from src.infrastructure.repository.implementations.inventario_repository import InventarioRepository
 from src.infrastructure.repository.implementations.venta_repository import ventaRepository
 from src.infrastructure.repository.implementations.ventamaterial_repository import VentaMaterialRepository
+from src.infrastructure.repository.implementations.catematerial_repository import cateMaterialRepository
 
 
 def build_curtiembre_service(
@@ -60,3 +62,8 @@ def build_ventamaterial_service(
 ):
     return ventamaterialService(VentaMaterialRepository(db_connection))
 
+
+def build_catematerial_service(
+        db_connection=Depends(get_db_connection)
+):
+    return CateMaterialService(cateMaterialRepository(db_connection))
