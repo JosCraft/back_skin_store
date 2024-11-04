@@ -17,21 +17,24 @@ class InventarioRepository(IInventarioRepository):
                                "INNER JOIN material ON material.id_mt = inventario.id_material "
                                "INNER JOIN tipo ON tipo.id_tp = material.id_mt")
                 result = cursor.fetchall()
+                print(result)
                 for row in result:
                     tipo = TipoDomain(
-                        id_tp=row["id_tp"],
-                        nombre=row["nombre_tp"],
-                        precio=row["precio_tp"],
-                        medida=row["tipo_medida"],
-                        idColor=row["id_color"],
-                        idCurtiembre=row["id_curtiembre"]
+                        id=result["id_tp"],
+                        nombre=result["nombre_tp"],
+                        precio=result["precio_tp"],
+                        idCategoria=result["id_categoria"],
+                        idColor=result["id_color"],
+                        idCurtiembre=result["id_curtiembre"],
                     )
+                    print(tipo)
                     inv = MaterialDomain(
-                        id=row["id_mt"],
+                        id=row["id_material"],
                         medida=row["medida_mt"],
                         idTipo=row["id_tipo"],
                         tipo=tipo,
                     )
+                    print(inv)
                     inventarios.append(inv)
                 return inventarios
         except Exception as e:
