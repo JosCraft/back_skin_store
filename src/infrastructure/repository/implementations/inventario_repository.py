@@ -2,7 +2,8 @@ from src.core.abstractions.infrastructure.repository.inventario_repository_abstr
 from src.core.models.inventario_domain import InventarioDomain
 from src.core.models.material_domain import MaterialDomain
 from src.core.models.tipo_domain import TipoDomain
-
+from src.core.models.color_domain import ColorDomain
+from src.core.models.curtiembre_domain import CurtiembreDomain
 
 class InventarioRepository(IInventarioRepository):
 
@@ -15,28 +16,39 @@ class InventarioRepository(IInventarioRepository):
             with self.connection.cursor(dictionary=True) as cursor:
                 cursor.execute("SELECT * FROM inventario "
                                "INNER JOIN material ON material.id_mt = inventario.id_material "
-                               "INNER JOIN tipo ON tipo.id_tp = material.id_mt")
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "
+                               "INNER JOIN color ON tipo.id_color = color.id_cl "
+                               "INNER JOIN curtiembre ON tipo.id_curtiembre = curtiembre.id_cr")
                 result = cursor.fetchall()
-                print(result)
                 for row in result:
-                    tipo = TipoDomain(
-                        id=result["id_tp"],
-                        nombre=result["nombre_tp"],
-                        precio=result["precio_tp"],
-                        idCategoria=result["id_categoria"],
-                        idColor=result["id_color"],
-                        idCurtiembre=result["id_curtiembre"],
+                    color = ColorDomain(
+                        id=row["id_color"],  # Changed result to row
+                        nombre=row["nombre_cl"],
+                        codigoHex=row["codigo_hx"],
                     )
-                    print(tipo)
+                    curtiembre = CurtiembreDomain(
+                        id=row["id_curtiembre"],
+                        nombre=row["nombre_cr"],
+                        numero=row["numero_cr"],
+                    )
+                    tipo = TipoDomain(
+                        id=row["id_tp"],
+                        nombre=row["nombre_tp"],
+                        precio=row["precio_tp"],
+                        idCategoria=row["id_categoria"],
+                        idColor=row["id_color"],
+                        idCurtiembre=row["id_curtiembre"],
+                        color=color,
+                        curtiembre=curtiembre,
+                    )
                     inv = MaterialDomain(
                         id=row["id_material"],
                         medida=row["medida_mt"],
                         idTipo=row["id_tipo"],
                         tipo=tipo,
                     )
-                    print(inv)
                     inventarios.append(inv)
-                return inventarios
+            return inventarios
         except Exception as e:
             print(e)
         return inventarios
@@ -47,23 +59,25 @@ class InventarioRepository(IInventarioRepository):
             with self.connection.cursor(dictionary=True) as cursor:
                 cursor.execute("SELECT * FROM inventario "
                                "INNER JOIN material ON material.id_mt = inventario.id_material "
-                               "INNER JOIN tipo ON tipo.id_tp = material.id_mt"
-                               "where id_inv = %s", (id_inv,))
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "  # Fixed id_tipo to match material
+                               "WHERE id_inv = %s", (id_inv,))
                 result = cursor.fetchone()
-                tipo = TipoDomain(
-                    id_tp=result["id_tp"],
-                    nombre_tp=result["nombre_tp"],
-                    precio_tp=result["precio_tp"],
-                    idColor=result["id_color"],
-                    idCurtiembre=result["id_curtiembre"]
-                )
-                inv = MaterialDomain(
-                    id_mt=result["id_mt"],
-                    medida=result["medida_mt"],
-                    idTipo=result["id_tipo"],
-                    tipo=tipo,
-                )
-                return inv
+                if result:
+                    tipo = TipoDomain(
+                        id=result["id_tp"],
+                        nombre=result["nombre_tp"],
+                        precio=result["precio_tp"],
+                        idCategoria=result["id_categoria"],
+                        idColor=result["id_color"],
+                        idCurtiembre=result["id_curtiembre"]
+                    )
+                    inv = MaterialDomain(
+                        id=result["id_mt"],
+                        medida=result["medida_mt"],
+                        idTipo=result["id_tipo"],
+                        tipo=tipo,
+                    )
+            return inv
         except Exception as e:
             print(e)
         return inv
