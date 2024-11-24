@@ -10,6 +10,7 @@ from src.presentation.controllers.inventario_controller import inventario_contro
 from src.presentation.controllers.venta_controller import venta_controller
 from src.presentation.controllers.ventamaterial_controller import ventamaterial_controller
 from src.presentation.controllers.catematerial_controller import catematerial_controller
+from src.presentation.controllers.usuario_controller import usuario_controller
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -32,6 +33,7 @@ app.include_router(inventario_controller)
 app.include_router(venta_controller)
 app.include_router(ventamaterial_controller)
 app.include_router(catematerial_controller)
+app.include_router(usuario_controller)
 
 if __name__ == "__main__":
     import uvicorn

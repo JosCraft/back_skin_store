@@ -42,12 +42,13 @@ class MaterialRepository(IMaterialRepository):
             print(e)
         return mat
 
-    async def create(self, mat: MaterialDomain):
+    async def create(self, mat: MaterialDomain) -> int:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("INSERT INTO material (medida_mt, id_tipo) VALUES (%s, %s)",
                                (mat.medida, mat.idTipo))
                 self.connection.commit()
+                return cursor.lastrowid
         except Exception as e:
             print(e)
 

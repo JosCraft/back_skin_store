@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="crud inventario complete">
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/repository/implementations/venta_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/controllers/venta_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/dto/venta_dto.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/mappers/map_dto_domain_venta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/dependency_inyection/dependency_inyection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/models/venta_domain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/models/venta_domain.py" afterDir="false" />
+    <list default="true" id="6ebd1a91-3d0f-4505-84ed-463115a57d8a" name="Changes" comment="crud complete">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_10_2024_15_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_10_2024_15_14__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/repository/dependency_inyection/dependency_inyection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/repository/dependency_inyection/dependency_inyection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,18 +37,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/victo/Documents/Python Scripts/back_SkinStore/.venv/pip.pyz",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/phyton/apiEcomerceCA&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\phyton\back_skin_store\src\presentation\controllers" />
       <recent name="C:\Users\victo\Documents\Python Scripts\back_SkinStore\src" />
     </key>
   </component>
@@ -91,7 +89,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -104,38 +102,45 @@
       <option name="presentableId" value="Default" />
       <updated>1729109279563</updated>
     </task>
-    <task id="LOCAL-00001" summary="change install env">
+    <task id="LOCAL-00001" summary="add tipo crud">
       <option name="closed" value="true" />
-      <created>1730145602267</created>
+      <created>1730129762713</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1730145602267</updated>
+      <updated>1730129762713</updated>
     </task>
-    <task id="LOCAL-00002" summary="crud material complete">
+    <task id="LOCAL-00002" summary="init crud ventamateria but error with type data">
       <option name="closed" value="true" />
-      <created>1730150790070</created>
+      <created>1730309506867</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1730150790070</updated>
+      <updated>1730309506867</updated>
     </task>
-    <task id="LOCAL-00003" summary="crud inventario complete">
+    <task id="LOCAL-00003" summary="crud complete">
       <option name="closed" value="true" />
-      <created>1730156320216</created>
+      <created>1730374638891</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1730156320216</updated>
+      <updated>1730374638891</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="crud complete">
+      <option name="closed" value="true" />
+      <created>1730919538790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730919538790</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change install env" />
-    <MESSAGE value="crud material complete" />
-    <MESSAGE value="crud inventario complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="crud inventario complete" />
+    <MESSAGE value="add tipo crud" />
+    <MESSAGE value="init crud ventamateria but error with type data" />
+    <MESSAGE value="crud complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud complete" />
   </component>
 </project>

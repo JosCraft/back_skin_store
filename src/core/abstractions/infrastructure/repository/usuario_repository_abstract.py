@@ -13,7 +13,11 @@ class IUsuarioRepository(ABC):
         pass
 
     @abstractmethod
-    async def create(self, usr: UsuarioDomain):
+    async def register(self, usr: UsuarioDomain) -> bool:
+        pass
+    
+    @abstractmethod
+    async def login(self, email: str, password: str) -> UsuarioDomain:
         pass
 
     @abstractmethod

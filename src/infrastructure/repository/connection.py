@@ -15,9 +15,10 @@ connection_pool = pooling.MySQLConnectionPool(
 def get_connection():
     try:
         connection = connection_pool.get_connection()
-
+        
         if not connection.is_connected():
             connection.reconnect(attempts=3, delay=2)
+
         return connection
     except Error as e:
         print(f"Error getting connection from pool: {e}")

@@ -12,7 +12,11 @@ class IUsuarioService(ABC):
         pass
 
     @abstractmethod
-    async def create_usuario(self, usuario: UsuarioDomain):
+    async def register_usuario(self, usuario: UsuarioDomain) -> bool:
+        pass
+    
+    @abstractmethod
+    async def login_usuario(self, email: str, password: str) -> UsuarioDomain:
         pass
 
     @abstractmethod

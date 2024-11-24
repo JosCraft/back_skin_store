@@ -12,7 +12,7 @@ class IMaterialService(ABC):
         pass
 
     @abstractmethod
-    async def create_material(self, material: MaterialDomain):
+    async def create_material(self, material: MaterialDomain) -> int:
         pass
 
     @abstractmethod

@@ -13,7 +13,7 @@ class IMaterialRepository(ABC):
         pass
 
     @abstractmethod
-    async def create(self, mat: MaterialDomain):
+    async def create(self, mat: MaterialDomain) -> int:
         pass
 
     @abstractmethod

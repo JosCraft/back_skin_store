@@ -7,3 +7,7 @@ class UsuarioDomain(BaseModel):
     nombre: str
     apelldio: str
     numero: str
+    email: str
+    password: str
+    activo: bool
+    role: str

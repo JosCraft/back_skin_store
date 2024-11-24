@@ -14,7 +14,7 @@ class materialService(IMaterialService):
     async def get_material_by_id(self, id_material: int) -> MaterialDomain:
         return await self.material_repository.get_by_id(id_material)
 
-    async def create_material(self, material: MaterialDomain):
+    async def create_material(self, material: MaterialDomain) -> int:
         return await self.material_repository.create(material)
 
     async def update_material(self, id_material: int, material: MaterialDomain):

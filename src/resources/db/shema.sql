@@ -1,10 +1,12 @@
 CREATE TABLE USUARIO (
     id_usr INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usr VARCHAR(225),
-    email VARCHAR(225),
-    password VARCHAR(225),
+    nombre_usr VARCHAR(225) NOT NULL,
+    email VARCHAR(225) UNIQUE NOT NULL,
+    password VARCHAR(225) NOT NULL,
     ape_usr VARCHAR(225),
-    numero_usr VARCHAR(225)
+    numero_usr VARCHAR(225),
+    activo BOOLEAN DEFAULT TRUE
+    role ENUM('ADMIN', 'USER') DEFAULT 'USER'
 );
 
 CREATE TABLE CURTIEMBRE (
