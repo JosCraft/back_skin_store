@@ -43,9 +43,11 @@ async def create_venta(
     :type venta_service: IVentaService
     """
     try:
+        print(ventaDTO)
         venta = map_domain_dto_to_venta(ventaDTO)
-        await venta_service.create_venta(venta)
-        return Response(status_code=201)
+        id = await venta_service.create_venta(venta)        
+        #retorn el id
+        return {"id": id}
     except Exception as e:
         return {"error": str(e)}
 

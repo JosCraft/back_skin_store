@@ -8,5 +8,5 @@ from datetime import date
 class VentaDTO(BaseModel):
     id: Optional[int]
     fecha: date
-    totalVenta: float
+    totalVenta: str
     idUsuario: Optional[int]

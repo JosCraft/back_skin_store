@@ -6,5 +6,5 @@ from datetime import date
 class VentaDomain(BaseModel):
     id: Optional[int] = None
     fecha: date
-    totalVenta: float
+    totalVenta: str
     idUsuario: Optional[int] = None

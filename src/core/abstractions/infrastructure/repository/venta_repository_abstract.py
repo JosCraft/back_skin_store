@@ -13,6 +13,6 @@ class IVentaRepository(ABC):
         pass
 
     @abstractmethod
-    async def create(self, ven: VentaDomain):
+    async def create(self, ven: VentaDomain) -> int:
         pass
 

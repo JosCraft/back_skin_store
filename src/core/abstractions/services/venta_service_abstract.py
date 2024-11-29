@@ -12,5 +12,5 @@ class IVentaService(ABC):
         pass
 
     @abstractmethod
-    async def create_venta(self, venta: VentaDomain):
+    async def create_venta(self, venta: VentaDomain) -> int:
         pass

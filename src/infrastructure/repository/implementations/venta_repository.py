@@ -42,12 +42,13 @@ class ventaRepository(IVentaRepository):
             print(e)
         return venta
 
-    async def create(self, ven: VentaDomain):
+    async def create(self, ven: VentaDomain) -> int:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute("INSERT INTO venta (fecha_vt, total_vt, id_usuario) VALUES (%s, %s, %s)",
                                (ven.fecha, ven.totalVenta, ven.idUsuario))
                 self.connection.commit()
+                return cursor.lastrowid
         except Exception as e:
             print(e)
 
