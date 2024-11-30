@@ -10,6 +10,10 @@ class IInventarioService(ABC):
         pass
 
     @abstractmethod
+    async def get_all_by_id_inventario(self, id_tipo: int) -> list[MaterialDomain]:
+        pass
+
+    @abstractmethod
     async def get_inventario_by_id(self, id_material: int) -> MaterialDomain:
         pass
 

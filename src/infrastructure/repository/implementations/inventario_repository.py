@@ -52,6 +52,27 @@ class InventarioRepository(IInventarioRepository):
         except Exception as e:
             print(e)
         return inventarios
+    
+    async def get_all_by_id(self, id_tipo: int) -> list[MaterialDomain]:
+        inventarios = []
+        try:
+            with self.connection.cursor(dictionary=True) as cursor:
+                cursor.execute("SELECT * FROM inventario "
+                               "INNER JOIN material ON material.id_mt = inventario.id_material "
+                               "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "
+                               "WHERE id_tp = %s", (id_tipo,))
+                result = cursor.fetchall()
+                for row in result:
+                    inv = MaterialDomain(
+                        id=row["id_material"],
+                        medida=row["medida_mt"],
+                        idTipo=row["id_tipo"],
+                    )
+                    inventarios.append(inv)
+            return inventarios
+        except Exception as e:
+            print(e)
+        return inventarios
 
     async def get_by_id(self, id_inv: int) -> MaterialDomain:
         inv = None
@@ -91,10 +112,10 @@ class InventarioRepository(IInventarioRepository):
         except Exception as e:
             print(e)
 
-    async def remove(self, id_inv: int) -> bool:
+    async def remove(self, id_mt: int) -> bool:
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("DELETE FROM inventario WHERE id_inv = %s", (id_inv,))
+                cursor.execute("DELETE FROM inventario WHERE id_material = %s", (id_mt,))
                 self.connection.commit()
                 return True
         except Exception as e:

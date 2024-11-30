@@ -8,6 +8,10 @@ class IInventarioRepository(ABC):
     @abstractmethod
     async def get_all(self) -> list[MaterialDomain]:
         pass
+    
+    @abstractmethod
+    async def get_all_by_id(self, id_tipo: int) -> list[MaterialDomain]:
+        pass
 
     @abstractmethod
     async def get_by_id(self, id_material: int) -> MaterialDomain:

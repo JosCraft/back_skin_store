@@ -19,6 +19,16 @@ async def get_inventario(
     except Exception as e:
         return {"error": str(e)}
 
+@inventario_controller.get("/inventarios/{id_tipo}")
+async def get_inventario_by_id(
+        id_tipo: int,
+        inventario_service: IInventarioService = Depends(build_inventario_service)
+):
+    try:
+        inventario = await inventario_service.get_all_by_id_inventario(id_tipo)
+        return inventario
+    except Exception as e:
+        return {"error": str(e)}
 
 @inventario_controller.get("/inventario/{inventario_id}")
 async def get_inventario_by_id(
@@ -49,13 +59,13 @@ async def create_inventario(
         return {"error": str(e)}
 
 
-@inventario_controller.delete("/inventario/{inventario_id}")
+@inventario_controller.delete("/inventario/{material_id}")
 async def delete_inventario(
-        inventario_id: int,
+        material_id: int,
         inventario_service: IInventarioService = Depends(build_inventario_service)
 ):
     try:
-        await inventario_service.remove_inventario(inventario_id)
+        await inventario_service.remove_inventario(material_id)
         return Response(status_code=200)
     except Exception as e:
         return {"error": str(e)}
