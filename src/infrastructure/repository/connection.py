@@ -5,6 +5,7 @@ connection_pool = pooling.MySQLConnectionPool(
     pool_size=5,
     pool_reset_session=True,
     host='127.0.0.1',
+    port=3306, 
     database='skinstore',
     user='root',
     password='',

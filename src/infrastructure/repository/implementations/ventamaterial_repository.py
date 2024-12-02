@@ -19,6 +19,7 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                                "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "
                                "INNER JOIN venta ON venta.id_vt = venta_material.id_venta")
                 result = cursor.fetchall()
+                print(result)
                 for row in result:
                     material = MaterialDomain(
                         id=row["id_mt"],
@@ -28,7 +29,7 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                     venta = VentaDomain(
                         id=row["id_vt"],
                         fecha=row["fecha_vt"],
-                        totalVenta=row["total_vt"],
+                        totalVenta=str(row["total_vt"]),
                         idUsuario=row["id_usuario"]
                     )
                     vendidos.append(VentaMaterialDomain(
@@ -58,13 +59,13 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                     idTipo=result["id_tipo"]
                 )
                 venta = VentaDomain(
-                    id=result["id_venta"],
+                    id=result["id_vt"],
                     fecha=result["fecha_vt"],
-                    totalVenta=result["total_vt"],
+                    totalVenta=str(result["total_vt"]),
                 )
                 return VentaMaterialDomain(
-                    idVenta=result["id_venta"],
-                    idMaterial=result["id_material"],
+                    idVenta=result["id_vt"],
+                    idMaterial=result["id_mt"],
                     MaterialDomain=material,
                     VentaDomain=venta
                 )

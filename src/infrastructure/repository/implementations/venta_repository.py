@@ -17,7 +17,7 @@ class ventaRepository(IVentaRepository):
                     venta = VentaDomain(
                         id=row["id_vt"],
                         fecha=row["fecha_vt"],
-                        totalVenta=row["total_vt"],
+                        totalVenta= str(row["total_vt"]),
                         idUsuario=row["id_usuario"],
                     )
                     ventas.append(venta)
