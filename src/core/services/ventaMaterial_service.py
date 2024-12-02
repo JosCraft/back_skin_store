@@ -12,7 +12,7 @@ class ventamaterialService(IVentaMaterialService):
     async def get_all_ventamaterial(self) -> list[VentaMaterialDomain]:
         return await self.ventamaterial_repository.get_all()
 
-    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> VentaMaterialDomain:
+    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> list[VentaMaterialDomain]:
         return await self.ventamaterial_repository.get_by_id(ventamaterial_id)
 
     async def add_ventamaterial(self, ventamaterial: VentaMaterialDomain):

@@ -10,7 +10,7 @@ class IVentaMaterialService(ABC):
         pass
 
     @abstractmethod
-    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> VentaMaterialDomain:
+    async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> list[VentaMaterialDomain]:
         pass
 
     @abstractmethod

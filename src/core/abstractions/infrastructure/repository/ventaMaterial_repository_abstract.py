@@ -9,7 +9,7 @@ class IVentaMaterialRepository(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, id_material: int) -> VentaMaterialDomain:
+    async def get_by_id(self, id_material: int) -> list[VentaMaterialDomain]:
         pass
 
     @abstractmethod
