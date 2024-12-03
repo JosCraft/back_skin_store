@@ -3,6 +3,8 @@ from src.core.models.ventaMaterial_domain import VentaMaterialDomain
 from src.core.models.material_domain import MaterialDomain
 from src.core.models.venta_domain import VentaDomain
 from src.core.models.tipo_domain import TipoDomain
+from src.core.models.ventaPlot_domain import ventaPlotDomain
+
 
 class VentaMaterialRepository(IVentaMaterialRepository):
 
@@ -13,7 +15,7 @@ class VentaMaterialRepository(IVentaMaterialRepository):
         vendidos = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT id_mt, id_vt, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt "
+                cursor.execute("SELECT id_mt, id_vt, id_tipo, id_usuario, medida_mt, fecha_vt, total_vt, nombre_tp, precio_tp   "
                                "FROM venta_material "
                                "INNER JOIN material ON material.id_mt = venta_material.id_venta "
                                "INNER JOIN tipo ON tipo.id_tp = material.id_tipo "
@@ -25,6 +27,10 @@ class VentaMaterialRepository(IVentaMaterialRepository):
                         id=row["id_mt"],
                         medida=row["medida_mt"],
                         idTipo=row["id_tipo"],
+                        tipo=TipoDomain(
+                            nombre=row["nombre_tp"],
+                            precio=row["precio_tp"]
+                        )
                     )
                     venta = VentaDomain(
                         id=row["id_vt"],
@@ -84,6 +90,25 @@ class VentaMaterialRepository(IVentaMaterialRepository):
             print(f"Error al obtener datos por ID: {e}")
             return None
 
+    async def get_all_for_plot(self) -> list[ventaPlotDomain]:
+        ventaData = []
+        print('asdasasfasasdas')
+        try:
+            with self.connection.cursor(dictionary=True) as cursor:
+                cursor.execute("SELECT tipo.nombre_tp AS TipoMaterial, COUNT(*) AS TotalVentas, SUM(venta.total_vt) AS TotalIngresos FROM venta_material INNER JOIN material ON material.id_mt = venta_material.id_material INNER JOIN tipo ON tipo.id_tp = material.id_tipo INNER JOIN venta ON venta.id_vt = venta_material.id_venta GROUP BY  tipo.nombre_tp ORDER BY TotalVentas DESC;")
+                result = cursor.fetchall()
+                print(result)
+                for row in result:
+                    ventaData.append(ventaPlotDomain(
+                        tipoMaterial=row["TipoMaterial"],
+                        totalVentas=row["TotalVentas"],
+                        totalIngresos=row["TotalIngresos"]
+                    ))
+                return ventaData
+        except Exception as e:
+            print(e)
+            return None
+    
 
     async def add(self, ven: VentaMaterialDomain):
         try:

@@ -8,6 +8,6 @@ class UsuarioDomain(BaseModel):
     apelldio: str
     numero: str
     email: str
-    password: str
+    password: Optional[str] = None
     activo: bool
-    role: str
+    role: Optional[str] = None

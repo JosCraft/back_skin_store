@@ -32,6 +32,15 @@ async def get_ventamaterial_by_id(
     except Exception as e:
         return {"error": str(e)}
 
+@ventamaterial_controller.get("/plot/ventamaterial")
+async def get_all_ventamaterial_for_plot(
+        ventamaterial_service: IVentaMaterialService = Depends(build_ventamaterial_service)
+):
+    try:
+        ventamaterial = await ventamaterial_service.get_all_ventamaterial_for_plot()
+        return ventamaterial
+    except Exception as e:
+        return {"error": str(e)}
 
 @ventamaterial_controller.post("/ventamaterial")
 async def create_ventamaterial(

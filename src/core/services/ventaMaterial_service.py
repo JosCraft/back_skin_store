@@ -15,6 +15,9 @@ class ventamaterialService(IVentaMaterialService):
     async def get_ventamaterial_by_id(self, ventamaterial_id: int) -> list[VentaMaterialDomain]:
         return await self.ventamaterial_repository.get_by_id(ventamaterial_id)
 
+    async def get_all_ventamaterial_for_plot(self) -> list[VentaMaterialDomain]:
+        return await self.ventamaterial_repository.get_all_for_plot()
+
     async def add_ventamaterial(self, ventamaterial: VentaMaterialDomain):
         return await self.ventamaterial_repository.add(ventamaterial)
 

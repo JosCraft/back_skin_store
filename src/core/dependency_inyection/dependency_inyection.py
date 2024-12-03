@@ -9,6 +9,7 @@ from src.core.services.venta_service import ventaService
 from src.core.services.ventaMaterial_service import ventamaterialService
 from src.core.services.catematerial_service import CateMaterialService
 from src.core.services.usuario_service import usuarioService
+from src.core.services.dashboard_service import dashboardService
 
 from src.infrastructure.repository.dependency_inyection.dependency_inyection import get_db_connection
 
@@ -21,6 +22,7 @@ from src.infrastructure.repository.implementations.venta_repository import venta
 from src.infrastructure.repository.implementations.ventamaterial_repository import VentaMaterialRepository
 from src.infrastructure.repository.implementations.catematerial_repository import cateMaterialRepository
 from src.infrastructure.repository.implementations.usuario_repository import usuarioRepository
+from src.infrastructure.repository.implementations.dashboard_repository import DashboardRepository
 
 def build_curtiembre_service(
         db_connection=Depends(get_db_connection)
@@ -72,3 +74,6 @@ def build_catematerial_service(
 
 def build_usuario_service(db_connection=Depends(get_db_connection)):        
         return usuarioService(usuarioRepository(db_connection))
+
+def build_dashboard_service(db_connection=Depends(get_db_connection)):        
+        return dashboardService(DashboardRepository(db_connection))

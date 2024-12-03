@@ -1,6 +1,6 @@
 from src.core.abstractions.infrastructure.repository.venta_repository_abstract import IVentaRepository
 from src.core.models.venta_domain import VentaDomain
-
+from src.core.models.usuario_domain import UsuarioDomain
 
 class ventaRepository(IVentaRepository):
 
@@ -11,7 +11,7 @@ class ventaRepository(IVentaRepository):
         ventas = []
         try:
             with self.connection.cursor(dictionary=True) as cursor:
-                cursor.execute("SELECT * FROM venta")
+                cursor.execute("SELECT * FROM venta INNER JOIN usuario ON usuario.id_usr = venta.id_usuario")
                 result = cursor.fetchall()
                 for row in result:
                     venta = VentaDomain(
@@ -19,6 +19,14 @@ class ventaRepository(IVentaRepository):
                         fecha=row["fecha_vt"],
                         totalVenta= str(row["total_vt"]),
                         idUsuario=row["id_usuario"],
+                        usuario=UsuarioDomain(
+                            id=row["id_usr"],
+                            nombre=row["nombre_usr"],
+                            apelldio=row["ape_usr"],
+                            numero=row["numero_usr"],
+                            email=row["email"],
+                            activo=row["activo"],
+                        )
                     )
                     ventas.append(venta)
                 return ventas
