@@ -80,6 +80,7 @@ class DashboardRepository(IDashboardRepository):
                     ORDER BY totalVentas DESC;
                 """)
                 results = cursor.fetchall()
+                cont = 0
                 for row in results:
                     tipo = TipoDomain(
                         id=row["id"],

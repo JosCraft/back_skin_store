@@ -5,10 +5,10 @@ from pydantic import BaseModel
 @dataclass
 class UsuarioDTO(BaseModel):
     id: Optional[int]
-    nombre: str
-    apelldio: str
-    numero: str
-    email: str
-    password: str
-    activo: bool
-    role: str
+    nombre: Optional[str]
+    apelldio: Optional[str]
+    numero: Optional[str]
+    email: Optional[str]
+    password: Optional[str]
+    activo: Optional[bool]
+    role: Optional[str]

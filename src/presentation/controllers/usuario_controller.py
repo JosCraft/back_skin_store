@@ -13,32 +13,50 @@ ALGORITHM = "HS256"
 usuario_controller = APIRouter(prefix="/api/v1", tags=["usuario"])
 
 def generar_token(usuario_id: int, role: str) -> str:
+    print(usuario_id, role)  # Debug print to check the type
     payload = {
-        "sub": usuario_id,
-        "role": role, 
+        "sub": str(usuario_id),  # Convert to string to avoid the error
+        "role": role,
         "exp": datetime.utcnow() + timedelta(hours=2)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 
+
 security = HTTPBearer()
 
 def verificar_token_y_rol(
-    credentials: HTTPAuthorizationCredentials = Security(security), 
-    roles_permitidos: list[str] = None
+    credentials: HTTPAuthorizationCredentials = Security(security),
+    rol_permitido: str = None
 ):
     try:
-        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        try:
+            payload = jwt.decode(str(credentials.credentials), SECRET_KEY, algorithms=[ALGORITHM])
+            print("Decoded payload:", payload)
+            print("Token decoded successfully.")
+        except jwt.ExpiredSignatureError:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="El token ha expirado."
+            )
+        except jwt.InvalidTokenError as e:
+            print(f"Invalid token error: {e}")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token inválido."
+            )
+        # Get the role from the payload
+        rol_usuario = payload.get("role")
         
-        if roles_permitidos:
-            rol_usuario = payload.get("role")
-            if rol_usuario not in roles_permitidos:
-                raise HTTPException(
-                    status_code=status.HTTP_403_FORBIDDEN,
-                    detail="No tienes permiso para acceder a esta ruta."
-                )
-        
-        return payload  
+        # Check if the role matches the permitted role
+        if rol_permitido and rol_usuario != rol_permitido:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="No tienes permiso para acceder a esta ruta."
+            )
+
+        return payload  # Return the payload if the token is valid and the role matches
+
     except jwt.ExpiredSignatureError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -111,6 +129,65 @@ async def login_user(
 async def perfil(payload: dict = Depends(verificar_token_y_rol)):
     return {"message": "Acceso permitido", "usuario": payload}
 
-@usuario_controller.get("/admin", dependencies=[Depends(verificar_token_y_rol)])
-async def admin_ruta(payload: dict = Depends(lambda cred: verificar_token_y_rol(cred, roles_permitidos=["ADMIN"]))):
-    return {"message": "Acceso no permitido", "usuario": payload}
+
+@usuario_controller.get("/admin", dependencies=[Depends(lambda cred: verificar_token_y_rol(cred, rol_permitido="ADMIN"))])
+async def admin_ruta(payload: dict = Depends(verificar_token_y_rol)):
+    return {"message": "Acceso permitido", "usuario": payload}
+
+
+@usuario_controller.get("/user")
+async def get_all(usuario_service: IUsuarioService = Depends(build_usuario_service)):
+    try:
+        usuarios = await usuario_service.get_all_usuario()
+        return usuarios
+    except Exception as e:
+        return {"error": str(e)}
+
+@usuario_controller.get("/user/{usuario_id}")
+async def get_by_id(usuario_id: int, usuario_service: IUsuarioService = Depends(build_usuario_service)):
+    try:
+        usuario = await usuario_service.get_usuario_by_id(usuario_id)
+        return usuario
+    except Exception as e:
+        return {"error": str(e)}
+    
+@usuario_controller.put("/user/{usuario_id}")
+async def update_usuario(usuario_id: int, usuario_dto: UsuarioDTO, usuario_service: IUsuarioService = Depends(build_usuario_service)):
+    try:
+        print(usuario_id, usuario_dto)
+
+        # Mapeo del DTO al dominio
+        usuario = map_domain_dto_to_usuario(usuario_dto)
+        print(usuario)
+
+        # Actualización del usuario en el servicio
+        await usuario_service.update_usuario(usuario_id, usuario)
+        return {"message": "Usuario actualizado correctamente"}
+
+    except RequestValidationError as ve:
+        # Si la validación del esquema falla, devolvemos un detalle claro
+        return JSONResponse(
+            status_code=422,
+            content={"error": "Datos inválidos", "detalles": ve.errors()},
+        )
+
+    except HTTPException as he:
+        # Si se lanza una excepción HTTP, devolvemos la misma
+        return JSONResponse(
+            status_code=he.status_code,
+            content={"error": he.detail},
+        )
+
+    except Exception as e:
+        # Manejamos errores genéricos
+        return {"error": f"Error inesperado: {str(e)}"}
+
+
+
+@usuario_controller.delete("/user/{usuario_id}")
+async def delete_usuario(usuario_id: int, usuario_service: IUsuarioService = Depends(build_usuario_service)):
+    try:
+        await usuario_service.delete_usuario(usuario_id)
+        return {"message": "Usuario eliminado correctamente"}
+    except Exception as e:
+        return {"error": str(e)}
